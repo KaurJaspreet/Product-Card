@@ -44,7 +44,7 @@ function createProductCard(product) {
       <div class="relative overflow-hidden
         w-full h-[159px] md:h-[355px]
         border border-none rounded-[10px]"
-      >        
+      > 
         <img 
           src="${product.image}" 
           alt="${product.name}"
@@ -59,40 +59,44 @@ function createProductCard(product) {
           loading="lazy"
         >
 
-        <span class="absolute z-10 
-          top-1 left-1 md:top-2 md:left-2
-          bg-white text-[8px] md:text-[10px]
-          uppercase px-2 py-1 leading-[1] tracking-[0.06em]
-          border border-solid rounded-full"
-        >
-          ${product.badge}
-        </span>
+        ${product.badge ? `
+          <span class="absolute z-10 
+            top-1 left-1 md:top-2 md:left-2
+            bg-white text-[8px] md:text-[10px]
+            uppercase px-2 py-1 leading-[1] tracking-[0.06em]
+            border border-solid rounded-full"
+          >
+            ${product.badge}
+          </span>` 
+          : ''
+        }
+
         ${product.savePercent ? `
           <span class="absolute z-10 
             top-1 right-1 md:top-2 md:right-6
-            bg-[#5C7962] text-white text-[8px] md:text-[10px] 
+            bg-sage text-white text-[8px] md:text-[10px] 
             uppercase px-2 py-1 leading-[1] tracking-[0.06em]
             border border-solid border-black rounded-full"
           >
             Save ${product.savePercent}
-          </span>` : 
-          ''
+          </span>` 
+          : ''
         }
       </div>
       
-      <div class="text-[#1C1D1D] py-3 px-2 md:py-4 md:px-3 flex flex-col gap-2">
+      <div class="text-gray py-3 px-2 md:py-4 md:px-3 flex flex-col gap-2">
         <h3 class="text-base md:text-lg m-0 uppercase leading-[1] tracking-[0.03em]">
           ${product.name}
         </h3>
         
         <div class="flex items-center gap-1">
           <span class="flex flex-row">${starsHtml}</span>
-          <span class="text-xs text-gray-500 font-['Poppins']">
+          <span class="text-xs text-gray-500 font-poppins">
             ${product.reviews.toLocaleString()} Reviews
           </span>
         </div>
         
-        <p class="font-['Poppins'] font-medium text-[#231F20] text-base">
+        <p class="font-poppins font-medium text-dark-gray text-base">
           ${product.price}
         </p>
       </div>
@@ -109,11 +113,23 @@ function renderProducts() {
   const initialCount = isMobile() ? 4 : products.length;
   const visibleProducts = isExpanded ? products : products.slice(0, initialCount);
   
-  // Render products
+  // Render products using DocumentFragment for better performance
+  const fragment = document.createDocumentFragment();
+
   visibleProducts.forEach(product => {
-    productRow.innerHTML += createProductCard(product);
+    const productHTML = createProductCard(product);
+    const ProductCardEl = document.createElement('div');
+    ProductCardEl.innerHTML = productHTML.trim(); // Remove whitespace
+    
+    // Get the actual product card element (skip any text nodes)
+    const productElement = ProductCardEl.firstElementChild;
+    if (productElement) {
+      fragment.appendChild(productElement);
+    }
   });
-  
+
+  productRow.appendChild(fragment);
+
   // Show/hide and update button text on mobile
   if (isMobile()) {
     showMoreContainer.style.display = 'block';
@@ -125,77 +141,92 @@ function renderProducts() {
 
 // Handle show more/less toggle functionality
 function handleShowMore() {
-  if (isMobile()) {
-    if (!isExpanded) {
-      // Show more: Create smooth dropdown for additional products
-      const hiddenProducts = products.slice(4);
+  if (!isMobile()) return;
+
+  if (!isExpanded) {
+    // Show more: Create smooth dropdown for additional products
+    const hiddenProducts = products.slice(4);
+    const dropdownContent = document.createElement('div');
+    dropdownContent.id = 'additionalProducts';
+    dropdownContent.className = `
+      grid grid-cols-2 gap-4 pb-4
+      max-h-0 
+      overflow-hidden 
+      opacity-0 
+      -translate-y-5 
+      transition-[max-height,opacity,transform] 
+      duration-300 
+      ease-out
+    `;
+    
+    // Use DocumentFragment for better performance
+    const fragment = document.createDocumentFragment();
+
+    hiddenProducts.forEach(product => {
+      const productHTML = createProductCard(product);
+      const tempContainer = document.createElement('div');
+      tempContainer.innerHTML = productHTML.trim();
       
-      // Create dropdown container
-      const dropdownContent = document.createElement('div');
-      dropdownContent.className = 'dropdown-content grid grid-cols-2 gap-4 pb-4';
-      dropdownContent.id = 'additionalProducts';
-      
-      // Add hidden products to dropdown
-      hiddenProducts.forEach(product => {
-        dropdownContent.innerHTML += createProductCard(product);
-      });
-      
-      // Add dropdown after the main product row
-      productRow.parentElement.appendChild(dropdownContent);
-      
-      // Trigger smooth animation
-      setTimeout(() => {
-        dropdownContent.classList.add('open');
-      }, 50);
-      
-      isExpanded = true;
-      showMoreBtn.textContent = 'Show Less';
-    } else {
-      // Show less: Remove dropdown with smooth animation
-      const dropdownContent = document.getElementById('additionalProducts');
-      if (dropdownContent) {
-        dropdownContent.classList.remove('open');
-        
-        // Remove element after animation completes
-        setTimeout(() => {
-          dropdownContent.remove();
-        }, 300); // Match the faster CSS transition duration
+      // Get the actual product card element (skip any text nodes)
+      const productElement = tempContainer.firstElementChild;
+      if (productElement) {
+        fragment.appendChild(productElement);
       }
-      
-      isExpanded = false;
-      showMoreBtn.textContent = 'Show More';
+    });
+
+    dropdownContent.appendChild(fragment);
+    productRow.parentElement.appendChild(dropdownContent);
+
+    // Trigger animation with proper timing
+    setTimeout(() => {
+      dropdownContent.classList.remove('max-h-0', 'opacity-0', '-translate-y-5');
+      dropdownContent.classList.add('max-h-[850px]', 'opacity-100', 'translate-y-0');
+    }, 50);
+
+    isExpanded = true;
+    showMoreBtn.textContent = 'Show Less';
+  } else {
+    // Show less: Remove dropdown with smooth animation
+    const dropdownContent = document.getElementById('additionalProducts');
+    if (dropdownContent) {
+      dropdownContent.classList.remove('max-h-[850px]', 'opacity-100', 'translate-y-0');
+      dropdownContent.classList.add('max-h-0', 'opacity-0', '-translate-y-5');
+
+      setTimeout(() => dropdownContent.remove(), 300);
     }
+
+    isExpanded = false;
+    showMoreBtn.textContent = 'Show More';
   }
 }
 
 // Handle window resize
 function handleResize() {
-  if (!isMobile() && isExpanded) {
-    // Reset state when switching to desktop
-    isExpanded = false;
-    // Remove any dropdown content
-    const dropdownContent = document.getElementById('additionalProducts');
-    if (dropdownContent) {
-      dropdownContent.remove();
+  if (!isMobile()) {
+    // When switching to desktop, always reset state and show all products
+    if (isExpanded) {
+      // Remove any dropdown content if it exists
+      const dropdownContent = document.getElementById('additionalProducts');
+      if (dropdownContent) {
+        dropdownContent.remove();
+      }
     }
+    
+    // Reset state and re-render to show all products on desktop
+    isExpanded = false;
     renderProducts();
   } else if (isMobile() && !isExpanded) {
-    // Ensure proper mobile state
+    // Ensure proper mobile state when switching back to mobile
     renderProducts();
   }
 }
 
 // Initialize the application
-// Initialize the application
 function init() {
   // Load products from JSON file
   loadProducts();
   
-  // Add event listeners
-  if (showMoreBtn) {
-    showMoreBtn.addEventListener('click', handleShowMore);
-  }
-  
+  if (showMoreBtn) showMoreBtn.addEventListener('click', handleShowMore);
   window.addEventListener('resize', handleResize);
 }
 

@@ -13,27 +13,10 @@
 .scrollbar-custom::-webkit-scrollbar-thumb {
   background: #231F20;
   border-radius: 6px;
+  transition: height 0.2s ease;
 }
 
 /* Increase scrollbar height on container hover */
 .scrollbar-custom:hover::-webkit-scrollbar {
   height: 6px;
-}
-
-
-/* Smooth dropdown animation for mobile */
-.dropdown-content {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-              opacity 0.25s ease-out, 
-              transform 0.25s ease-out;
-}
-
-.dropdown-content.open {
-  max-height: 850px;
-  opacity: 1;
-  transform: translateY(0);
 }
