@@ -48,15 +48,19 @@ A responsive product card layout built with HTML, TailwindCSS, and Vanilla JavaS
 ```
 Product-Card/
 ├── index.html              # Main HTML entry point
-├── README.md              # Project documentation
+├── README.md               # Project documentation
 ├── css/
-│   └── style.css          # Custom styles and animations
+│   └── style.css           # Custom styles and animations
 ├── js/
-│   └── script.js          # Main application logic
+│   ├── script.js           # Main application logic
+│   ├── tailwind.config.js  # Tailwind CSS configuration
+│   └── components/
+│       ├── productCard.js  # Product card rendering component
+│       └── starReviews.js  # Star rating SVG logic
 ├── data/
-│   └── products.json      # Product data and configuration
+│   └── products.json       # Product data and configuration
 └── assets/
-    └── icons.js           # SVG icons and utility functions
+  └── (images, icons, etc.)
 ```
 
 ## 🎨 Customization
