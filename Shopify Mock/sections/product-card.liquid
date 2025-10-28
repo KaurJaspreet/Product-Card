@@ -1,0 +1,186 @@
+{% comment %}
+  Product Cards Section
+
+  Best Sellers Section — migrated from static HTML
+  Uses Liquid and schema inputs so merchants can edit in the Theme Editor
+{% endcomment %}
+
+<div class="mx-auto px-6 py-9 md:pt-20 md:pl-32 md:pr-0">
+  <!-- Header -->
+  <div class="flex items-center max-md:justify-center md:justify-between mb-6 md:mb-9 md:pr-32">
+    <h1 class="font-source-serif font-bold 
+      max-md:text-center text-[#231F20] 
+      text-[28px] md:text-[40px]"
+    >
+      {{ section.settings.heading }}
+    </h1>
+    <a href="{{ section.settings.shop_all_url }}"  target="_blank"
+      class="font-poppins text-sm text-[#5C553A] font-semibold flex items-center gap-2.5 max-md:hidden hover:text-black transition-transform duration-200 hover:scale-105"
+    >
+      {{ section.settings.shop_all_label }}
+      <svg width="16" height="12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 6H14.3333M14.3333 6L9.33333 1M14.3333 6L9.33333 11" stroke="#5C553A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Product Cards -->
+  <div class="relative">
+    <div id="productRow" 
+      class="grid grid-cols-2 max-md:gap-4 md:pb-[52px] 
+      md:flex md:flex-row md:overflow-x-auto scrollbar-custom
+      scrollbar-thin"
+    >
+      {% for block in section.blocks %}
+        {% assign product = all_products[block.settings.product] %}
+        {% if product %}
+          <div
+            class="bg-white rounded-lg overflow-hidden cursor-pointer
+              min-w-[158px] md:min-w-[355px] md:mr-6"
+          >
+            <div class="relative overflow-hidden group
+                w-full h-[159px] md:h-[355px]
+                border border-none rounded-[10px]"
+              >
+              <img 
+                src="{{ product.featured_image | img_url: '400x400' }}" 
+                alt="{{ product.title }}" 
+                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ease-in-out"
+                loading="lazy"
+              >
+                {% if product.images.size > 1 %}
+                  <img src="{{ product.images[1] | img_url: '400x400' }}" 
+                    alt="{{ product.title }}" 
+                    class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 
+                      ease-in-out opacity-0 group-hover:opacity-100"
+                    loading="lazy"
+                  >
+                {% endif %}
+
+              {% if block.settings.badge %}
+                <span class="absolute z-10 
+                  top-1 left-1 md:top-2 md:left-2
+                  bg-white text-[8px] md:text-[10px]
+                  uppercase px-2 py-1 leading-[1] tracking-[0.06em]
+                  border border-solid rounded-full"
+                >
+                  {{ block.settings.badge }}
+                </span>
+              {% endif %}
+              {% if block.settings.save_percent %}
+                <span class="absolute z-10 
+                  top-1 right-1 md:top-2 md:right-6
+                  bg-[#5C7962] text-white text-[8px] md:text-[10px] 
+                  uppercase px-2 py-1 leading-[1] tracking-[0.06em]
+                  border border-solid border-black rounded-full"
+                >
+                  Save {{ block.settings.save_percent }}
+                </span>
+              {% endif %}
+            </div>
+
+            <div class="text-[#1C1D1D] py-3 px-2 md:py-4 md:px-3 flex flex-col gap-2">
+              <h3 class="font-bebas text-base md:text-lg m-0 uppercase leading-[1] tracking-[0.03em]">
+                {{ product.title }}
+              </h3>
+              <div class="flex items-center gap-1">
+                <span class="flex flex-row">
+                  {% render 'star-rating', rating: block.settings.rating %}
+                </span>
+                <span class="text-xs text-gray-500 font-poppins">
+                  {{ block.settings.reviews }} Reviews
+                </span>
+              </div>
+              <p class="font-poppins font-medium text-dark-gray text-base">
+                {{ product.price | money }}
+              </p>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Show More / Less Button (Mobile Only) -->
+    {% if section.blocks.size > 4 %}
+    <div id="showMoreContainer" class="mt-4 text-center md:hidden">
+      <button id="showMoreBtn" 
+        class="md:hidden font-poppins w-full cursor-pointer p-4
+          rounded-full bg-black hover:bg-gray-200
+          font-semibold text-base  text-white hover:text-black
+          transition-all duration-300 linear"
+      >
+        <span id="showMoreText">Show More</span>
+        <span id="showLessText" class="hidden">Show Less</span>
+      </button>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Cards",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Best Sellers"
+    },
+    {
+      "type": "url",
+      "id": "shop_all_url",
+      "label": "Shop All URL",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "shop_all_label",
+      "label": "Shop All Label",
+      "default": "Shop All Best Sellers"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge (optional)"
+        },
+        {
+          "type": "text",
+          "id": "save_percent",
+          "label": "Save Percent (optional)"
+        },
+        {
+          "type": "number",
+          "id": "rating",
+          "label": "Rating (1-5)",
+          "default": 5
+        },
+        {
+          "type": "number",
+          "id": "reviews",
+          "label": "Reviews Count",
+          "default": 100
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Product Cards",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

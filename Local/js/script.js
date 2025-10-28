@@ -148,7 +148,7 @@ function createProductCard(product) {
     <div class="bg-white rounded-lg overflow-hidden cursor-pointer
       min-w-[158px] md:min-w-[355px] md:mr-6"
     >
-      <div class="relative overflow-hidden
+      <div class="relative overflow-hidden group
         w-full h-[159px] md:h-[355px]
         border border-none rounded-[10px]"
       > 
@@ -162,7 +162,7 @@ function createProductCard(product) {
           src="${product.hoverImage}" 
           alt="${product.name}"
           class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 
-          ease-in-out opacity-0 hover:opacity-100"
+          ease-in-out opacity-0 group-hover:opacity-100"
           loading="lazy"
         >
 

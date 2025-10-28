@@ -1,0 +1,47 @@
+{
+  "sections": {
+    "hero": {
+      "type": "product-card",
+      "settings": {
+        "heading": "Best Sellers",
+        "shop_all_url": "/collections/all",
+        "shop_all_label": "Shop All Best Sellers"
+      },
+      "blocks": [
+        {
+          "type": "product",
+          "settings": {
+            "product": "product-handle-1",
+            "badge": "New",
+            "save_percent": "10%",
+            "rating": 4,
+            "reviews": 24
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "product": "product-handle-2",
+            "badge": "",
+            "save_percent": "",
+            "rating": 5,
+            "reviews": 12
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "product": "product-handle-3",
+            "badge": "Limited",
+            "save_percent": "15%",
+            "rating": 5,
+            "reviews": 42
+          }
+        }
+      ]
+    }
+  },
+  "order": [
+    "hero"
+  ]
+}

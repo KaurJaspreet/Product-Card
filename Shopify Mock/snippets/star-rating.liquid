@@ -1,0 +1,41 @@
+{% assign decimal_part = rating | modulo: 1 %}
+{% assign has_half_star = false %}
+
+{% if decimal_part >= 0.25 and decimal_part <= 0.75 %}
+  {% assign has_half_star = true %}
+{% endif %}
+
+{% assign full_stars = rating | floor %}
+{% assign empty_stars = 5 | minus: full_stars %}
+{% if has_half_star %}
+  {% assign empty_stars = empty_stars | minus: 1 %}
+{% endif %}
+
+<div class="flex items-center gap-1">
+  {% for i in (1..full_stars) %}
+    <!-- Full star -->
+    <svg width="12" height="12" fill="#231F20">
+      <polygon points="6,0.9 7.8,4.1 11,4.5 8.5,7.2 9.1,10.4 6,8.9 2.9,10.4 3.5,7.2 1,4.5 4.2,4.1"/>
+    </svg>
+  {% endfor %}
+
+  {% if has_half_star %}
+    <!-- Half star -->
+    <svg width="12" height="12">
+      <defs>
+        <linearGradient id="half">
+          <stop offset="50%" stop-color="#231F20"/>
+          <stop offset="50%" stop-color="#CFCFCF"/>
+        </linearGradient>
+      </defs>
+      <polygon points="6,0.9 7.8,4.1 11,4.5 8.5,7.2 9.1,10.4 6,8.9 2.9,10.4 3.5,7.2 1,4.5 4.2,4.1" fill="url(#half)"/>
+    </svg>
+  {% endif %}
+
+  {% for i in (1..empty_stars) %}
+    <!-- Empty star -->
+    <svg width="12" height="12" fill="#CFCFCF">
+      <polygon points="6,0.9 7.8,4.1 11,4.5 8.5,7.2 9.1,10.4 6,8.9 2.9,10.4 3.5,7.2 1,4.5 4.2,4.1"/>
+    </svg>
+  {% endfor %}
+</div>

@@ -7,7 +7,7 @@
   background: #DDD6D7;
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  margin-right: 128px
+  margin-right: 128px;
 }
 
 .scrollbar-custom::-webkit-scrollbar-thumb {

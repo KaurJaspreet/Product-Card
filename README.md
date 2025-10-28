@@ -33,11 +33,10 @@ A responsive product card layout built with HTML, TailwindCSS, and Vanilla JavaS
   3. Select "Open with Live Server"
 
 
-
 ## File Structure
 
 ```
-Product-Card/
+Product-Card/Local
 ├── index.html              # Main HTML entry point
 ├── README.md               # Project documentation
 ├── css/
@@ -45,7 +44,37 @@ Product-Card/
 ├── js/
 │   ├── script.js           # All application logic and product data (self-contained)
 │   └── tailwind.config.js  # Tailwind CSS configuration
+├── Shopify Mock/
+│   └── sections/
+│       └── product-card.liquid   # Shopify section (Liquid) mockup for theme integration
 ```
+
+---
+
+## 🛒 Shopify Section Mockup
+
+This project includes a Shopify-ready section for easy integration into Shopify themes. The section is located in:
+
+```
+Shopify Mock/sections/product-card.liquid
+```
+
+**Features:**
+- Fully responsive, mobile-first product card section using Shopify Liquid and schema inputs
+- Merchants can add products, badges, ratings, and review counts via the Shopify Theme Editor
+- "Show More/Less" mobile functionality and smooth animations
+- Uses Tailwind utility classes (see `tailwind.config.js` for custom colors/fonts)
+
+**Preview the theme in action:**
+
+[Shopify Theme Preview (Sisters In Style)](https://sistersinstyle-mtl.myshopify.com/?_ab=0&_bt=eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaVZ6YVhOMFpYSnphVzV6ZEhsc1pTMXRkR3d1YlhsemFHOXdhV1o1TG1OdmJRWTZCa1ZVIiwiZXhwIjoiMjAyNS0xMC0yOFQyMDo0NjoxMS4wNDFaIiwicHVyIjoicGVybWFuZW50X3Bhc3N3b3JkX2J5cGFzcyJ9fQ%3D%3D--f01d0d5724519531ca0bf6f7d059648b4d6f09fb&_fd=0&_sc=1&key=8a2495938eea8cf84921457bcd6883f349b510d395bb742475dd129f0e3d2e37&preview_theme_id=153851461870)
+
+To use in your own Shopify theme:
+1. Copy `Shopify Mock/sections/product-card.liquid` into your theme's `sections/` directory
+2. Add the section in the Shopify Theme Editor
+3. Customize products, badges, and settings as desired
+
+---
 
 ## 🎨 Customization
 
