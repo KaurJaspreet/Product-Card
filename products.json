@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "name": "Outside Vibe T-Shirt Sunshine",
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
+    "hoverImage": "https://images.unsplash.com/photo-1505751104546-4b63c93054b1?w=400&h=400&fit=crop",
+    "price": "$104.95",
+    "rating": 4.5,
+    "reviews": 1234,
+    "badge": "BEST SELLER",
+    "savePercent": null
+  },
+  {
+    "id": 2,
+    "name": "Nine Bottle Outside Vibe Forest Green",
+    "image": "https://images.unsplash.com/photo-1659506425360-f04a041e90df?w=400&h=400&fit=crop",
+    "hoverImage": "https://images.unsplash.com/photo-1697576239754-a6aef9751e51?w=400&h=400&fit=crop",
+    "price": "$104.95",
+    "rating": 5,
+    "reviews": 892,
+    "badge": "BEST SELLER",
+    "savePercent": "16%"
+  },
+  {
+    "id": 3,
+    "name": "Rest In Nature T-Shirt Charcoal",
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop",
+    "hoverImage": "https://images.unsplash.com/photo-1581987625444-878fa12fbf2a?w=400&h=400&fit=crop",
+    "price": "$104.95",
+    "rating": 4,
+    "reviews": 567,
+    "badge": "BEST SELLER",
+    "savePercent": null
+  },
+  {
+    "id": 4,
+    "name": "Outside Vibe Cap Forest Green",
+    "image": "https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=400&h=400&fit=crop",
+    "hoverImage": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop",
+    "price": "$104.95",
+    "rating": 5,
+    "reviews": 2341,
+    "badge": "BEST SELLER",
+    "savePercent": "15%"
+  },
+  {
+    "id": 5,
+    "name": "Rest In Nature T-Shirt Charcoal",
+    "image": "https://images.unsplash.com/photo-1622434641406-a158123450f9?w=400&h=400&fit=crop",
+    "hoverImage": "https://images.unsplash.com/photo-1613520701290-480b81948f43?w=400&h=400&fit=crop",
+    "price": "$104.95",
+    "rating": 4,
+    "reviews": 891,
+    "badge": "BEST SELLER",
+    "savePercent": null
+  },
+  {
+    "id": 6,
+    "name": "Vintage Denim Jacket",
+    "image": "https://images.unsplash.com/photo-1601036559620-3a83dfdead09?w=400&h=400&fit=crop",
+    "hoverImage": "https://images.unsplash.com/photo-1601036572102-f8cd483c9518?w=400&h=400&fit=crop",
+    "price": "$89.95",
+    "rating": 5,
+    "reviews": 445,
+    "badge": "NEW",
+    "savePercent": null
+  },
+  {
+    "id": 7,
+    "name": "Classic White Sneakers",
+    "image": "https://images.unsplash.com/photo-1695552836001-e34239c9c9d4?w=400&h=400&fit=crop",
+    "hoverImage": "https://images.unsplash.com/photo-1695552839801-fd20f9ff020f?w=400&h=400&fit=crop",
+    "price": "$124.95",
+    "rating": 4,
+    "reviews": 1567,
+    "badge": "BEST SELLER",
+    "savePercent": "12%"
+  },
+  {
+    "id": 8,
+    "name": "Leather Crossbody Bag",
+    "image": "https://images.unsplash.com/photo-1575890318083-4d7c6ebcd60a?w=400&h=400&fit=crop",
+    "hoverImage": "https://images.unsplash.com/photo-1600857125164-499a823272b4?w=400&h=400&fit=crop",
+    "price": "$79.95",
+    "rating": 5,
+    "reviews": 234,
+    "badge": "LIMITED",
+    "savePercent": null
+  },
+  {
+    "id": 9,
+    "name": "Wireless Bluetooth Headphones",
+    "image": "https://images.unsplash.com/photo-1636093973985-4fe333d36de9?w=400&h=400&fit=crop",
+    "hoverImage": "https://images.unsplash.com/photo-1593442607435-e4e34991b210?w=400&h=400&fit=crop",
+    "price": "$199.95",
+    "rating": 5,
+    "reviews": 1890,
+    "badge": "BEST SELLER",
+    "savePercent": "20%"
+  },
+  {
+    "id": 10,
+    "name": "Nike Running Shoes",
+    "image": "https://images.unsplash.com/photo-1656944227480-98180d2a5155?w=400&h=400&fit=crop",
+    "hoverImage": "https://images.unsplash.com/photo-1656944227421-d0e8de487d9d?w=400&h=400&fit=crop",
+    "price": "$159.95",
+    "rating": 4,
+    "reviews": 678,
+    "badge": "NEW",
+    "savePercent": null
+  }
+]
