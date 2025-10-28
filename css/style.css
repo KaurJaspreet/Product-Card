@@ -1,0 +1,22 @@
+/* Custom scrollbar for Webkit browsers */
+.scrollbar-custom::-webkit-scrollbar {
+  height: 4px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: #DDD6D7;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  margin-right: 128px
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: #231F20;
+  border-radius: 6px;
+  transition: height 0.2s ease;
+}
+
+/* Increase scrollbar height on container hover */
+.scrollbar-custom:hover::-webkit-scrollbar {
+  height: 6px;
+}
