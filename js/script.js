@@ -35,6 +35,8 @@ const isMobile = () => window.innerWidth < 768;
 const productRow = document.getElementById('productRow');
 const showMoreBtn = document.getElementById('showMoreBtn');
 const showMoreContainer = document.getElementById('showMoreContainer');
+const showMoreText = document.getElementById('showMoreText');
+const showLessText = document.getElementById('showLessText');
 
 async function loadProducts() {
   try {
@@ -149,7 +151,7 @@ function renderProducts() {
         productElement.classList.add('hidden-product');
         // Only hide on mobile initially
         if (isMobile()) {
-          MOBILE_HIDE_CLASSES.forEach(cls => productElement.classList.add(cls));
+          productElement.classList.add(...MOBILE_HIDE_CLASSES);
         }
       }
       
@@ -178,19 +180,25 @@ function handleShowMore() {
   if (!isExpanded) {
     // Show More: Animate in hidden products
     hiddenProducts.forEach(product => {
-      MOBILE_HIDE_CLASSES.forEach(cls => product.classList.remove(cls));
-      MOBILE_SHOW_CLASSES.forEach(cls => product.classList.add(cls));
+      product.classList.remove(...MOBILE_HIDE_CLASSES);
+      product.classList.add(...MOBILE_SHOW_CLASSES);
     });
     isExpanded = true;
-    showMoreBtn.textContent = 'Show Less';
+    if (showMoreText && showLessText) {
+      showMoreText.classList.add('hidden');
+      showLessText.classList.remove('hidden');
+    }
   } else {
     // Show Less: Animate out hidden products
     hiddenProducts.forEach(product => {
-      MOBILE_SHOW_CLASSES.forEach(cls => product.classList.remove(cls));
-      MOBILE_HIDE_CLASSES.forEach(cls => product.classList.add(cls));
+      product.classList.remove(...MOBILE_SHOW_CLASSES);
+      product.classList.add(...MOBILE_HIDE_CLASSES);
     });
     isExpanded = false;
-    showMoreBtn.textContent = 'Show More';
+    if (showMoreText && showLessText) {
+      showMoreText.classList.remove('hidden');
+      showLessText.classList.add('hidden');
+    }
   }
 }
 
@@ -202,19 +210,31 @@ function handleResize() {
   if (!isMobile()) {
     // Desktop: Remove mobile classes and show all products
     hiddenProducts.forEach(product => {
-      MOBILE_HIDE_CLASSES.forEach(cls => product.classList.remove(cls));
-      MOBILE_SHOW_CLASSES.forEach(cls => product.classList.remove(cls));
+      product.classList.remove(...MOBILE_HIDE_CLASSES);
+      product.classList.remove(...MOBILE_SHOW_CLASSES);
     });
     showMoreContainer.style.display = 'none';
     isExpanded = false;
+    if (showMoreText && showLessText) {
+      showMoreText.classList.remove('hidden');
+      showLessText.classList.add('hidden');
+    }
   } else {
     // Mobile: Apply mobile logic
     showMoreContainer.style.display = 'block';
-    showMoreBtn.textContent = isExpanded ? 'Show Less' : 'Show More';
+    if (showMoreText && showLessText) {
+      if (isExpanded) {
+        showMoreText.classList.add('hidden');
+        showLessText.classList.remove('hidden');
+      } else {
+        showMoreText.classList.remove('hidden');
+        showLessText.classList.add('hidden');
+      }
+    }
     if (!isExpanded) {
       hiddenProducts.forEach(product => {
-        MOBILE_SHOW_CLASSES.forEach(cls => product.classList.remove(cls));
-        MOBILE_HIDE_CLASSES.forEach(cls => product.classList.add(cls));
+        product.classList.remove(...MOBILE_SHOW_CLASSES);
+        product.classList.add(...MOBILE_HIDE_CLASSES);
       });
     }
   }
