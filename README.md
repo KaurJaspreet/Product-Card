@@ -2,16 +2,6 @@
 
 A responsive product card layout built with HTML, TailwindCSS, and Vanilla JavaScript, featuring smooth animations and mobile-first design.
 
-## ✨ Features
-
-- **📱 Mobile-First Design**: Responsive grid layout that adapts to all screen sizes
-- **🔄 Show More/Less Functionality**: Smooth dropdown animation on mobile devices
-- **🖼️ Image Hover Effects**: Secondary image reveals on hover interaction
-- **📊 Custom Scrollbar**: Styled scrollbar with hover animations (4px → 6px)
-- **⭐ Star Ratings**: Dynamic star rating system with reviews count
-- **🏷️ Product Badges**: Category and discount badges
-- **🔄 External Data**: JSON-based product data management
-
 ## 🛠️ Tech Stack
 
 - **HTML5**: Semantic markup structure
@@ -32,7 +22,7 @@ A responsive product card layout built with HTML, TailwindCSS, and Vanilla JavaS
    cd Product-Card
    ```
 
-2. **Running thr project**
+2. **Running the project**
   ### Method 1: Direct File Opening
   1. Open `index.html` directly in your browser
   2. All dependencies are loaded via CDN
@@ -41,6 +31,7 @@ A responsive product card layout built with HTML, TailwindCSS, and Vanilla JavaS
   1. Install Live Server extension
   2. Right-click on `index.html`
   3. Select "Open with Live Server"
+
 
 
 ## File Structure
@@ -52,32 +43,28 @@ Product-Card/
 ├── css/
 │   └── style.css           # Custom styles and animations
 ├── js/
-│   ├── script.js           # Main application logic
-│   ├── tailwind.config.js  # Tailwind CSS configuration
-│   └── components/
-│       ├── productCard.js  # Product card rendering component
-│       └── starReviews.js  # Star rating SVG logic
-├── data/
-│   └── products.json       # Product data and configuration
+│   ├── script.js           # All application logic and product data (self-contained)
+│   └── tailwind.config.js  # Tailwind CSS configuration
 ```
 
 ## 🎨 Customization
 
+
 ### Adding New Products
 
-Edit `data/products.json` to add new products:
+Edit the `products` array at the top of `js/script.js` to add new products:
 
-```json
+```js
 {
-  "id": 11,
-  "name": "New Product Name",
-  "image": "https://images.unsplash.com/main-image",
-  "hoverImage": "https://images.unsplash.com/hover-image",
-  "price": "$49.99",
-  "rating": 4.5,
-  "reviews": 127,
-  "badge": "NEW",
-  "savePercent": "15%"
+  id: 11,
+  name: "New Product Name",
+  image: "https://images.unsplash.com/main-image",
+  hoverImage: "https://images.unsplash.com/hover-image",
+  price: "$49.99",
+  rating: 4.5,
+  reviews: 127,
+  badge: "NEW",
+  savePercent: "15%"
 }
 ```
 
