@@ -59,8 +59,6 @@ Product-Card/
 │       └── starReviews.js  # Star rating SVG logic
 ├── data/
 │   └── products.json       # Product data and configuration
-└── assets/
-  └── (images, icons, etc.)
 ```
 
 ## 🎨 Customization
@@ -83,21 +81,7 @@ Edit `data/products.json` to add new products:
 }
 ```
 
-### Styling Modifications
-
-1. **Colors**: Modify TailwindCSS classes in `index.html`
-2. **Animations**: Update CSS transitions in `css/style.css`
-3. **Layout**: Adjust grid/flex properties using Tailwind utilities
-4. **Scrollbar**: Customize webkit scrollbar styles in `css/style.css`
-
-
 ## 🔧 Development
-
-### Code Organization
-
-- **Imports**: SVG icons and utilities from `assets/icons.js`
-- **Async/Await**: For loading JSON data
-- **Event Handling**: Responsive resize and interaction management
 
 ### Performance Optimizations
 
