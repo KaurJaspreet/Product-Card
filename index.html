@@ -9,14 +9,14 @@
     <!-- Tailwind CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     
-    <!-- Google Fonts: Source Serif Pro + Poppins -->
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@900&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Source Serif Pro, Poppins, Bebas Neue -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@600&family=Source+Serif+Pro:wght@900&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-white text-black">
-    <div class="max-w-7xl mx-auto px-6 py-9 md:px-32 md:pt-20">
+  <body class="bg-white text-black font-[Bebas_Neue] antialiased">
+    <div class="mx-auto px-6 py-9 md:pt-20 md:pl-32 md:pr-0">
       <!-- Header -->
-      <div class="flex items-center max-md:justify-center md:justify-between mb-6 md:mb-9">
-        <h1 class="font-['Source Serif Pro'] font-bold 
+      <div class="flex items-center max-md:justify-center md:justify-between mb-6 md:mb-9 md:pr-32">
+        <h1 class="font-['Source_Serif_Pro'] font-bold 
           max-md:text-center text-[#231F20] 
           text-[28px] md:text-[40px]"
         >
@@ -32,8 +32,28 @@
       </div>
 
       <!-- Product Cards Content -->
-      <div class="flex flex-col lg:flex-row gap-8">
-        <!-- Product Grid -->
+      <div class="relative">
+        <!-- Product Container -->
+        <div id="productContainer" class="relative">
+          <!-- Product Row -->
+          <div id="productRow" 
+            class="grid grid-cols-2 max-md:gap-4 pb-4 md:pb-[52px] 
+              md:flex md:overflow-x-scroll scrollbar-custom"
+            >
+            <!-- Products will be dynamically inserted here -->
+          </div>
+        </div>
+        
+        <!-- Show More Button (Mobile Only) -->
+        <div id="showMoreContainer" class="mt-6 text-center md:hidden">
+          <button id="showMoreBtn" 
+            class="md:hidden w-full bg-black text-white px-8 py-3 rounded-full hover:bg-gray-800 
+            font-['Poppins'] font-semibold text-sm
+            transition-colors duration-300"
+          >
+            Show More
+          </button>
+        </div>
       </div>
     </div>
     <script src="script.js"></script>
