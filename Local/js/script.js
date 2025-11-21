@@ -1,5 +1,42 @@
-// Product data embedded directly for offline/local use
-const products = [
+// CSV Parser Function
+function parseCSV(csv) {
+  const lines = csv.trim().split('\n');
+  const headers = lines[0].split(',');
+  const products = [];
+  
+  for (let i = 1; i < lines.length; i++) {
+    const values = lines[i].split(',');
+    const product = {};
+    
+    headers.forEach((header, index) => {
+      let value = values[index] || '';
+      
+      // Convert data types
+      if (header === 'id') {
+        value = parseInt(value);
+      } else if (header === 'rating') {
+        value = parseFloat(value);
+      } else if (header === 'reviews') {
+        value = parseInt(value);
+      } else if (header === 'savePercent' && value === '') {
+        value = null;
+      }
+      
+      product[header] = value;
+    });
+    
+    products.push(product);
+  }
+  
+  return products;
+}
+
+// Load products from CSV if available
+let products = [];
+const USE_CSV = false; // Set to true to use CSV file instead of hardcoded data
+
+// Product data embedded directly for offline/local use (fallback)
+const defaultProducts = [
   {
     "id": 1,
     "name": "Outside Vibe T-Shirt Sunshine",
@@ -111,6 +148,31 @@ const products = [
     "savePercent": null
   }
 ];
+
+// Load products from CSV file
+async function loadProductsFromCSV() {
+  try {
+    const response = await fetch('data/products.csv');
+    if (!response.ok) {
+      throw new Error('CSV file not found');
+    }
+    const csvData = await response.text();
+    return parseCSV(csvData);
+  } catch (error) {
+    console.log('Could not load CSV file, using default products');
+    return defaultProducts;
+  }
+}
+
+// Initialize products array
+if (USE_CSV) {
+  loadProductsFromCSV().then(loadedProducts => {
+    products = loadedProducts;
+    init();
+  });
+} else {
+  products = defaultProducts;
+}
 
 // --- starReviews.js logic ---
 const star = {
@@ -357,4 +419,7 @@ function init() {
 }
 
 // Start the application when DOM is loaded
-document.addEventListener('DOMContentLoaded', init);
+if (!USE_CSV) {
+  document.addEventListener('DOMContentLoaded', init);
+}
+// If using CSV, init() is called after CSV loads (see above)
