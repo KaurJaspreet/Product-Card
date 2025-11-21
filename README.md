@@ -41,6 +41,8 @@ Product-Card/Local
 ├── README.md               # Project documentation
 ├── css/
 │   └── style.css           # Custom styles and animations
+├── data/
+│   └── products.csv        # Product data in CSV format (optional)
 ├── js/
 │   ├── script.js           # All application logic and product data (self-contained)
 │   └── tailwind.config.js  # Tailwind CSS configuration
@@ -81,7 +83,24 @@ To use in your own Shopify theme:
 
 ### Adding New Products
 
-Edit the `products` array at the top of `js/script.js` to add new products:
+You have two options for managing product data:
+
+#### Option 1: Using CSV File (Recommended for non-developers)
+
+1. Edit `Local/data/products.csv` to add, modify, or remove products
+2. CSV format: `id,name,image,hoverImage,price,rating,reviews,badge,savePercent`
+3. In `js/script.js`, set `USE_CSV = true` to load products from CSV file
+
+Example CSV row:
+```csv
+11,New Product Name,https://images.unsplash.com/main-image,https://images.unsplash.com/hover-image,$49.99,4.5,127,NEW,15%
+```
+
+**Note:** Leave `savePercent` empty (no value) if there's no discount, e.g., `...,NEW,` (ends with comma)
+
+#### Option 2: Edit JavaScript directly
+
+Edit the `defaultProducts` array in `js/script.js`:
 
 ```js
 {
