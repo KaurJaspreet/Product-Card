@@ -1,4 +1,7 @@
 // CSV Parser Function - Improved to handle commas in fields
+// Note: This is a simple CSV parser that splits by commas.
+// It does NOT handle quoted fields or commas within data.
+// For CSV files with commas in fields, use a proper CSV parsing library.
 function parseCSV(csv) {
   const lines = csv.trim().split('\n');
   const headers = lines[0].split(',');
@@ -172,7 +175,11 @@ async function loadProductsFromCSV() {
 
 // Initialize products array
 if (USE_CSV) {
-  loadProductsFromCSV().then(loadedProducts => {
+  // Wait for both DOM and CSV to be ready
+  Promise.all([
+    new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve)),
+    loadProductsFromCSV()
+  ]).then(([_, loadedProducts]) => {
     products = loadedProducts;
     init();
   });

@@ -87,9 +87,11 @@ You have two options for managing product data:
 
 #### Option 1: Using CSV File (Recommended for non-developers)
 
-1. Edit `Local/data/products.csv` to add, modify, or remove products
+1. Edit `data/products.csv` (located in the `Local/` directory) to add, modify, or remove products
 2. CSV format: `id,name,image,hoverImage,price,rating,reviews,badge,savePercent`
 3. In `js/script.js`, set `USE_CSV = true` to load products from CSV file
+
+**Important:** The CSV parser uses simple comma separation. Ensure your data fields (names, URLs) don't contain commas to avoid parsing errors.
 
 Example CSV row:
 ```csv
