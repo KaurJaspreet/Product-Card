@@ -1,0 +1,11 @@
+id,name,image,hoverImage,price,rating,reviews,badge,savePercent
+1,Outside Vibe T-Shirt Sunshine,https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop,https://images.unsplash.com/photo-1505751104546-4b63c93054b1?w=400&h=400&fit=crop,$104.95,4.5,1234,BEST SELLER,
+2,Nine Bottle Outside Vibe Forest Green,https://images.unsplash.com/photo-1659506425360-f04a041e90df?w=400&h=400&fit=crop,https://images.unsplash.com/photo-1697576239754-a6aef9751e51?w=400&h=400&fit=crop,$104.95,5,892,BEST SELLER,16%
+3,Rest In Nature T-Shirt Charcoal,https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop,https://images.unsplash.com/photo-1581987625444-878fa12fbf2a?w=400&h=400&fit=crop,$104.95,4,567,BEST SELLER,
+4,Outside Vibe Cap Forest Green,https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=400&h=400&fit=crop,https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop,$104.95,5,2341,BEST SELLER,15%
+5,Rest In Nature T-Shirt Charcoal,https://images.unsplash.com/photo-1622434641406-a158123450f9?w=400&h=400&fit=crop,https://images.unsplash.com/photo-1613520701290-480b81948f43?w=400&h=400&fit=crop,$104.95,4,891,BEST SELLER,
+6,Vintage Denim Jacket,https://images.unsplash.com/photo-1601036559620-3a83dfdead09?w=400&h=400&fit=crop,https://images.unsplash.com/photo-1601036572102-f8cd483c9518?w=400&h=400&fit=crop,$89.95,5,445,NEW,
+7,Classic White Sneakers,https://images.unsplash.com/photo-1695552836001-e34239c9c9d4?w=400&h=400&fit=crop,https://images.unsplash.com/photo-1695552839801-fd20f9ff020f?w=400&h=400&fit=crop,$124.95,4,1567,BEST SELLER,12%
+8,Leather Crossbody Bag,https://images.unsplash.com/photo-1575890318083-4d7c6ebcd60a?w=400&h=400&fit=crop,https://images.unsplash.com/photo-1600857125164-499a823272b4?w=400&h=400&fit=crop,$79.95,5,234,LIMITED,
+9,Wireless Bluetooth Headphones,https://images.unsplash.com/photo-1636093973985-4fe333d36de9?w=400&h=400&fit=crop,https://images.unsplash.com/photo-1593442607435-e4e34991b210?w=400&h=400&fit=crop,$199.95,5,1890,BEST SELLER,20%
+10,Nike Running Shoes,https://images.unsplash.com/photo-1656944227480-98180d2a5155?w=400&h=400&fit=crop,https://images.unsplash.com/photo-1656944227421-d0e8de487d9d?w=400&h=400&fit=crop,$159.95,4,678,NEW,
